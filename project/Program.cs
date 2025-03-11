@@ -22,11 +22,13 @@ public class Order
     public string Name { get; set; }
     public string Object { get; set; }
     public int  Quantity { get; set; }
-    public string place { get; set; }
+    public string Place { get; set; }
+    public string Data { get; set; }
 }
 
 public class Service
 {
+    public string Name { get; set; }
     public double Price { get; set; }
     public string Receipts { get; set; }
 }
