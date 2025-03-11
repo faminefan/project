@@ -16,3 +16,17 @@ Console.WriteLine("\t2 замовлення посилок");
 Console.WriteLine("\t3 товари які прийшли");
 Console.WriteLine("\t4 зберегти замовлення");
 Console.WriteLine("\t5 Замовлення які зроблення");
+
+public class Order
+{
+    public string Name { get; set; }
+    public string Object { get; set; }
+    public int  Quantity { get; set; }
+    public string place { get; set; }
+}
+
+public class Service
+{
+    public double Price { get; set; }
+    public string Receipts { get; set; }
+}
