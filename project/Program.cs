@@ -6,12 +6,13 @@
 	Відмітка про виконання замовлення(доставку товарів)
 	Зберігати та завантажувати у(з) файлі(у) замовлені послуги
 	Виконані послуги зберігати у іншому файлі
+	КЛАС Замовлення Послуга
 */
 Console.OutputEncoding = System.Text.Encoding.UTF8;
-Console.Writeline("----------- Нова пошта -----------");
-Console.Writeline("\tМЕНЮ:");
-Console.Writeline("\t1 послуги");
-Console.Writeline("\t2 замовлення посилок");
-Console.Writeline("\t3 товари які прийшли");
-Console.Writeline("\t4 зберегти замовлення");
-Console.Writeline("\t5 Замовлення які зроблення");
+Console.WriteLine("----------- Нова пошта -----------");
+Console.WriteLine("\tМЕНЮ:");
+Console.WriteLine("\t1 послуги");
+Console.WriteLine("\t2 замовлення посилок");
+Console.WriteLine("\t3 товари які прийшли");
+Console.WriteLine("\t4 зберегти замовлення");
+Console.WriteLine("\t5 Замовлення які зроблення");
