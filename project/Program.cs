@@ -17,6 +17,38 @@ Console.WriteLine("\t3 товари які прийшли");
 Console.WriteLine("\t4 зберегти замовлення");
 Console.WriteLine("\t5 Замовлення які зроблення");
 
+Order product = new();
+
+while (true)
+{
+    Console.Write("Your choice: ");
+    int choice = Convert.ToInt32(Console.ReadLine());
+
+    switch (choice)
+    {
+        case 1:
+            //
+            Console.WriteLine("Enter services name: ");
+            product.Name =  Console.ReadLine();
+            Console.WriteLine("Enter Object: ");
+            product.Object = Console.ReadLine();
+            Console.WriteLine("Enter Quantity: ");
+            product.Quantity = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Place: ");
+            product.Place = Console.ReadLine();
+            Console.WriteLine("Enter Data: ");
+            product.Data = Console.ReadLine();
+            break;
+        case 4:
+            Console.WriteLine("------- New mail ---------");
+            Console.WriteLine($"Name: {product.Name}");
+            Console.WriteLine($"Object: {product.Object}");
+            Console.WriteLine($"Quantity: {product.Quantity}");
+            Console.WriteLine($"Place: {product.Place}");
+            Console.WriteLine($"Data: {product.Data}");
+            break;
+    }
+}
 public class Order
 {
     public string Name { get; set; }
