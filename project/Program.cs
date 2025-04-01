@@ -8,16 +8,20 @@
 	Виконані послуги зберігати у іншому файлі
 	КЛАС Замовлення Послуга
 */
+using System.Text.Json;
+
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Console.WriteLine("----------- Нова пошта -----------");
 Console.WriteLine("\tМЕНЮ:");
 Console.WriteLine("\t1 послуги");
-Console.WriteLine("\t2 замовлення посилок");
-Console.WriteLine("\t3 товари які прийшли");
-Console.WriteLine("\t4 зберегти замовлення");
-Console.WriteLine("\t5 Замовлення які зроблення");
+Console.WriteLine("\t2 зберегти замовлення");
+Console.WriteLine("\t3 завантажити замовлення");
+Console.WriteLine("\t4 всі посилки");
+Console.WriteLine("\t5 замовлення посилок");
+Console.WriteLine("\t6 Замовлення які зроблені");
 
 Order product = new();
+List<Order> products = new();
 
 while (true)
 {
@@ -28,25 +32,39 @@ while (true)
     {
         case 1:
             //
+            var newItem = new Order();
             Console.WriteLine("Enter services name: ");
-            product.Name =  Console.ReadLine();
+            newItem.Name = Console.ReadLine();
             Console.WriteLine("Enter Object: ");
-            product.Object = Console.ReadLine();
+            newItem.Object = Console.ReadLine();
             Console.WriteLine("Enter Quantity: ");
-            product.Quantity = Convert.ToInt32(Console.ReadLine());
+            newItem.Quantity = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Place: ");
-            product.Place = Console.ReadLine();
+            newItem.Place = Console.ReadLine();
             Console.WriteLine("Enter Data: ");
-            product.Data = Console.ReadLine();
+            newItem.Data = Console.ReadLine();
+            products.Add(newItem);
+            break;
+        case 2:
+            string jsonToSave = JsonSerializer.Serialize(products);
+            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+            File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/products_db.json", jsonToSave);
+            break;
+        case 3:
+            string jsonToLoad = File.ReadAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/products_db.json");
+            products = JsonSerializer.Deserialize<List<Order>>(jsonToLoad);
             break;
         case 4:
-            Console.WriteLine("------- New mail ---------");
-            Console.WriteLine($"Name: {product.Name}");
-            Console.WriteLine($"Object: {product.Object}");
-            Console.WriteLine($"Quantity: {product.Quantity}");
-            Console.WriteLine($"Place: {product.Place}");
-            Console.WriteLine($"Data: {product.Data}");
-            break;
+            foreach (var item in products)
+            { 
+                Console.WriteLine("------- New mail ---------");
+                Console.WriteLine($"Name: {item.Name}");
+                Console.WriteLine($"Object: {item.Object}");
+                Console.WriteLine($"Quantity: {item.Quantity}");
+                Console.WriteLine($"Place: {item.Place}");
+                Console.WriteLine($"Data: {item.Data}");
+            }
+            break;  
     }
 }
 public class Order
