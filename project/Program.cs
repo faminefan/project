@@ -18,7 +18,9 @@ Console.WriteLine("\t2 зберегти замовлення");
 Console.WriteLine("\t3 завантажити замовлення");
 Console.WriteLine("\t4 всі посилки");
 Console.WriteLine("\t5 замовлення посилок");
-Console.WriteLine("\t6 Замовлення які зроблені");
+Console.WriteLine("\t6. Шукати продукти по id");
+Console.WriteLine("\t7. Шукати продукти по назві");
+Console.WriteLine("\t8. виконаний продукт");
 
 Order product = new();
 List<Order> products = new();
@@ -63,8 +65,58 @@ while (true)
                 Console.WriteLine($"Quantity: {item.Quantity}");
                 Console.WriteLine($"Place: {item.Place}");
                 Console.WriteLine($"Data: {item.Data}");
+                item.Show();
             }
-            break;  
+            break;
+
+        case 5:
+            for (int i = 0; i < products.Count; ++i)
+                Console.WriteLine($"[{i}] Product: " + products[i].Name);
+
+            Console.Write("Enter number to delete: ");
+            int numToDelete = Convert.ToInt32(Console.ReadLine());
+
+            if (numToDelete < 0 || numToDelete >= products.Count)
+            {
+                Console.WriteLine("Number out of range!");
+                break;
+            }
+
+            products.RemoveAt(numToDelete);
+            Console.WriteLine("Product deleted successfully!");
+            break;
+
+        case 6:
+            for (int i = 0; i < products.Count; ++i)
+                Console.WriteLine($"[{i}] Product: " + products[i].Name);
+
+            Console.Write("Enter number to show: ");
+            int numToShow = Convert.ToInt32(Console.ReadLine());
+
+            if (numToShow < 0 || numToShow >= products.Count)
+            {
+                Console.WriteLine("Number out of range!");
+                break;
+            }
+            var itemToShow = products[numToShow];
+
+            itemToShow.Show();
+            break;
+
+        case 7:
+            Console.Write("Enter product name to find: ");
+            string nameToFind = Console.ReadLine().Trim();
+
+            var foundItem = products.Find(x => x.Name.Contains(nameToFind));
+
+            if (foundItem == null)
+            {
+                Console.WriteLine("Product not found!");
+                break;
+            }
+
+            foundItem.Show();
+            break;
     }
 }
 public class Order
@@ -74,11 +126,13 @@ public class Order
     public int  Quantity { get; set; }
     public string Place { get; set; }
     public string Data { get; set; }
-}
-
-public class Service
-{
-    public string Name { get; set; }
-    public double Price { get; set; }
-    public string Receipts { get; set; }
+    public void Show()
+    {
+        Console.WriteLine("------- Product ---------");
+        Console.WriteLine($"Name: {this.Name}");
+        Console.WriteLine($"Object: {this.Object}");
+        Console.WriteLine($"Place: {this.Place}");
+        Console.WriteLine($"Quantity: {this.Quantity}");
+        Console.WriteLine($"Data: {this.Data}");
+    }
 }
