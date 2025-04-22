@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace project
 {
-    internal class nova_poshta
+    public class NovaPoshta
     {
         Order product = new();
         List<Order> products = new();

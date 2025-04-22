@@ -8,6 +8,7 @@
 	Виконані послуги зберігати у іншому файлі
 	КЛАС Замовлення Послуга
 */
+using project;
 using System.Text.Json;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -20,9 +21,8 @@ Console.WriteLine("\t4 всі посилки");
 Console.WriteLine("\t5 видалення посилок");
 Console.WriteLine("\t6. Шукати продукти по id");
 Console.WriteLine("\t7. Шукати продукти по назві");
-Console.WriteLine("\t8. виконаний продукт");
 
-
+NovaPoshta poshta = new();
 
 while (true)
 {
@@ -32,29 +32,42 @@ while (true)
     switch (choice)
     {
         case 1:
-            //
+
+            poshta.AddProduct();
            
             break;
         case 2:
-            
+
+            poshta.SaveToFile();
+
             break;
         case 3:
 
+            poshta.LoadToFile();
+
             break;
         case 4:
-       
+
+            poshta.ShowAllProduct();
+
             break;
 
         case 5:
-           
+
+            poshta.DeleteProduct();
+
             break;
 
         case 6:
-            
+
+            poshta.SerchId();
+
             break;
 
         case 7:
-            
+
+            poshta.SerchName();
+
             break;
     }
 }
